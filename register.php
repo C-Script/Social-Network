@@ -1,9 +1,9 @@
 <!--This is the registeration and login page, the main page to which the user is directed when he is not signed in-->
 <?php
     session_start();     
-    include 'php/db_init.php';
-    include 'php/register_handling.php';
-    include 'php/login_handling.php';   
+   // require 'php/db_init.php';
+    require 'php/register_handling.php';
+    require 'php/login_handling.php';   
 ?>
 
 <html lang="en">
