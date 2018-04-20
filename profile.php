@@ -19,6 +19,5 @@
             include 'partials/my_posts.php'
         ?>
 
-
     </body>
 </html>
