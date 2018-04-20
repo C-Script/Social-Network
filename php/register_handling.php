@@ -26,7 +26,7 @@ if(isset($_POST['reg_submit'])){
         $reg_error="Passwords should be the same!";
     }
     else {
-        $new_user= new user();
+        $new_user= new User();
         $created=$new_user->add($user_data);    
         if($created)
         {

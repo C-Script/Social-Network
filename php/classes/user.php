@@ -1,6 +1,7 @@
 <?php
 require 'php/db_init.php';
-class user {
+
+class User {
 	public $user_id='';
 
 	 public function __construct() {

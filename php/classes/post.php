@@ -1,6 +1,6 @@
 <?php
 
-class post {
+class Post {
 	public $owner_id;
 	public $post_id;
 	 public function __construct() {

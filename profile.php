@@ -12,6 +12,8 @@
         <?php
             include 'partials/header.php';
         ?>
+        
+        This is the profile of <?=$current_user_info['first_name']?> <?=$current_user_info['last_name']?>
 
         <!--The partial where the user posts appear-->
         <?php
