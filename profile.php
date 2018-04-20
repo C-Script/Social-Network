@@ -14,6 +14,11 @@
         ?>
         
 
+        <!--The partial where the user posts appear-->
+        <?php
+            include 'partials/my_posts.php'
+        ?>
+
 
     </body>
 </html>

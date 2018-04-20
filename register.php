@@ -8,7 +8,7 @@
 
 <html lang="en">
     <head>
-        <title>Social Network</title>
+        <title>World Changers</title>
         <link rel="stylesheet" type="text/css" href="styles/register.css">
     </head>
     <body>

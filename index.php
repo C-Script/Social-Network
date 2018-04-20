@@ -13,24 +13,19 @@
             include 'partials/header.php';
         ?>
 
+        <!--The form where the user submits his new post-->
         <form action="index.php" method="POST">
               <input type="text" placeholder="Wanna Change The World ?!" name="post_value">
             <input type="submit" value="Post" name="Post">            
         </form>
 
-        <!--This Div shows all the user posts -->
-        <div>
-             <?php 
-             if(mysql_num_rows($user_posts))
-                {
-                    echo " <h3> Your posts </h3>";
-                    while ($post=mysql_fetch_assoc( $user_posts)) {
-                        
-                        echo "<label> <h4> ".$post['post']." <h4></label>";
-                    }
-                }
-             ?>  
-        </div>
+
+        <!--The partial where the user posts appear-->
+        <?php
+            include 'partials/my_posts.php'
+        ?>
+
+        <!--Log out button-->
         <form action="index.php" method="POST">
             <input type="submit" value="Log out" name="logout">            
         </form>
