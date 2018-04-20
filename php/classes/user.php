@@ -21,7 +21,7 @@ public function get($columnName)
 {
 	$query="SELECT $columnName from users where id='$this->user_id'";
 	$query_run=mysql_fetch_assoc(mysql_query($query));
-	return $query_run['$columnName'];
+	return $query_run[$columnName];
 
 }
 public function getAll()

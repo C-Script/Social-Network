@@ -67,6 +67,12 @@ public function add($post_text)//add new post to the table posts
 	$query="INSERT INTO posts (owner, post, date_added) VALUES ('$this->owner_id', '$post_text', '$date_added')";
 	$query_run=mysql_query($query);
 
+	//Increment the number of posts for the owner
+	$owner_of_post=new User($this->owner_id);
+	$num_posts=$owner_of_post->get("num_posts");
+	$num_posts+=1;
+	$owner_of_post->update("num_posts",$num_posts);
+
 	if($query_run)
 	{
 		//here we successfully added the post so we need to get its id and save it in $this->post_id
