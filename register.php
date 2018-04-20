@@ -10,34 +10,42 @@
     <head>
         <title>World Changers</title>
         <link rel="stylesheet" type="text/css" href="styles/register.css">
+        <link href="https://fonts.googleapis.com/css?family=Hi+Melody" rel="stylesheet">
     </head>
     <body>
-        <!--LOGIN PART-->
-        <?php
-            include 'partials/login.php';
-        ?>
-
+        <div class="reg_header">
+            <div class="reg_header_logo"><a href="index.php">Change Makers</a></div>
+        </div>
         <br>
+        
+        <div class="grid">
 
-        <!--REGISTRATION PART-->
-        <div class="reg">
-            <h2>I am a new user</h2>
-            <form action="register.php" method="POST">
-                <input type="text" placeholder="First Name" name="reg_first_name">
-                <input type="text" placeholder="Last Name" name="reg_last_name">
-                <input type="email" placeholder="Email" name="reg_email">
-                <input type="password" placeholder="Password" name="reg_password">
-                <input type="password" placeholder="Password (again)" name="reg_password2">
-                <input type="submit" value="Submit" name="reg_submit">
-                <?php
-                    if(isset($reg_error)){
-                        echo $reg_error;
-                    }
-                    if(isset($reg_success)){
-                        echo $reg_success;
-                    }
-                ?>
-            </form>
+            <!--LOGIN PART-->
+            <?php
+                include 'partials/login.php';
+            ?>
+
+
+            <!--REGISTRATION PART-->
+            <div class="reg">
+                <h2>I am a new user</h2>
+                <form action="register.php" method="POST">
+                    <input type="text" placeholder="First Name" name="reg_first_name"><br>
+                    <input type="text" placeholder="Last Name" name="reg_last_name"><br>
+                    <input type="email" placeholder="Email" name="reg_email"><br>
+                    <input type="password" placeholder="Password" name="reg_password"><br>
+                    <input type="password" placeholder="Password (again)" name="reg_password2"><br>
+                    <input type="submit" value="Submit" name="reg_submit">
+                    <?php
+                        if(isset($reg_error)){
+                            echo $reg_error;
+                        }
+                        if(isset($reg_success)){
+                            echo $reg_success;
+                        }
+                    ?>
+                </form>
+            </div>
         </div>
 
 

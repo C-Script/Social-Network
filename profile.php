@@ -7,6 +7,8 @@
 <html lang="en">
     <head>
         <title>World Changers</title>
+        <link rel="stylesheet" type="text/css" href="styles/profile.css">
+        <link href="https://fonts.googleapis.com/css?family=Hi+Melody" rel="stylesheet">
     </head>
     <body>
         <?php

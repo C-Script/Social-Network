@@ -1,3 +1,31 @@
-h1 {
-    color:blue;
+.header {
+    text-align: center;
+    
+}
+
+.header_logo{
+    border-radius: 10px;
+    background-color: black;
+    width: 240px;
+    height: 80px;
+    font-size: 45px;
+    font-weight: 800;
+    font-family: 'Hi Melody', cursive;
+    text-align: center;
+    border: 2px black double;
+    margin: 0 auto;
+    cursor: pointer;
+    display: inline-block;
+    float: left;
+}
+.header_logo a, .header_logo a:active {
+    color: darkturquoise;
+}
+
+.header_buttons{
+    float: right
+}
+
+a, a:active {
+    text-decoration: none !important;
 }
