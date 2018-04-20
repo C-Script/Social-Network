@@ -1,7 +1,7 @@
 <!--This page is just a part of all the pages, except register.php-->
 <?php
     
-    require 'php/classes/user.php';
+    require 'php/classes/User.php';
 
     //let's take user info from the database and put them in the $current_user_info variable
     //so this information will be available to any page that has the 'header' part

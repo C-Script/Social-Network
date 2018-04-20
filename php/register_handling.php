@@ -1,7 +1,7 @@
 <!--This is where we handle user registration-->
 
 <?php
-require 'php/classes/user.php';
+require 'php/classes/User.php';
 $reg_error="";
 $reg_success="";
 

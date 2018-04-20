@@ -2,7 +2,7 @@
 
 //Redirecting to the register page if the value isset($_SESSION['email']) is not set
 //We set that value when the login is successful
-require 'php/classes/post.php';
+require 'php/classes/Post.php';
 if(!isset($_SESSION['email'])){
     header("Location: register.php");    
 }
