@@ -6,7 +6,7 @@
 
 <html lang="en">
     <head>
-        <title>Social Network</title>
+        <title>World Changers</title>
     </head>
     <body>
         <?php
@@ -17,20 +17,18 @@
               <input type="text" placeholder="Wanna Change The World ?!" name="post_value">
             <input type="submit" value="Post" name="Post">            
         </form>
-        <div><!--This Div shows all the user posts -->
+
+        <!--This Div shows all the user posts -->
+        <div>
              <?php 
              if(mysql_num_rows($user_posts))
-        {
-            echo " <h3> Your posts </h3>";
-             while ($post=mysql_fetch_assoc( $user_posts)) {
-
-
-                echo "<label> <h4> ".$post['post']." <h4></label>";
-
-
-                
-             }
-         }
+                {
+                    echo " <h3> Your posts </h3>";
+                    while ($post=mysql_fetch_assoc( $user_posts)) {
+                        
+                        echo "<label> <h4> ".$post['post']." <h4></label>";
+                    }
+                }
              ?>  
         </div>
         <form action="index.php" method="POST">
@@ -38,6 +36,7 @@
         </form>
     </body>
 </html>
+
 <?php 
-require 'php/index_handling.php';
+ include 'php/index_handling.php';
 ?>

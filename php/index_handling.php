@@ -11,6 +11,7 @@ if(isset($_POST['logout'])){
     session_destroy();
     header("Location: register.php");
 }
+
 if(isset($_POST['Post']))
 {
 	//update values in the user table
