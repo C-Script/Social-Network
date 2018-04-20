@@ -12,7 +12,6 @@
         <?php
             include 'partials/header.php';
         ?>
-        
 
         <!--The partial where the user posts appear-->
         <?php
