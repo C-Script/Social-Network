@@ -13,7 +13,7 @@
             include 'partials/header.php';
         ?>
 
-        Welcome <?=$current_user_info['first_name']?>
+        Welcomee <?=$current_user_info['first_name']?>
 
         <!--The form where the user submits his new post-->
         <form action="index.php" method="POST">

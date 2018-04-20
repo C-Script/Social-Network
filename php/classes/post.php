@@ -60,9 +60,11 @@ public function update($columname,$value)//update a certain property in the post
 	}
 }
 
-public function add($post_info)//add new post to the table posts
+public function add($post_text)//add new post to the table posts
 {
-	$query="INSERT INTO posts (post_id, owner, post, likes, shares, comments) VALUES (NULL, '$this->owner_id', '$post_info[2]', '$post_info[3]', '$post_info[4]', '$post_info[5]')";
+	$date_added = date("Y-m-d H:i:s");
+
+	$query="INSERT INTO posts (owner, post, date_added) VALUES ('$this->owner_id', '$post_text', '$date_added')";
 	$query_run=mysql_query($query);
 
 	if($query_run)
