@@ -21,6 +21,6 @@
 <div class="header">
     
     <span class="header_logo"><a href="index.php">Change Makers</a></span>
-    <span class="header_buttons"><a href="profile.php">My Profile</a></span>
+    <span class="header_buttons"><a href=<?=$current_user_info['profile_name']?>>My Profile</a></span>
     <br><br><br><br><br><br>
 </div>

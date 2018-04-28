@@ -87,7 +87,7 @@ public function add($user_info)
 		//profile name should be like firstname.id
 		$query="SELECT first_name from users where email='$user_info[2]'";
 		$query_run=mysql_fetch_assoc(mysql_query($query));
-		$first_name=$query_run['first_name'].".";
+		$first_name=strtolower($query_run['first_name']);
 		$query="UPDATE users SET profile_name = '$first_name$this->user_id' WHERE id ='$this->user_id'";
 		mysql_query($query);
 		return 1;
