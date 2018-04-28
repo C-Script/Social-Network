@@ -7,13 +7,11 @@ require 'php/classes/Post.php';
 
 if(!isset($_SESSION['email'])){
 	header("Location: register.php");
-	   
 }
 
  if(isset($_POST['logout'])){
     session_destroy();
 	header("Location: register.php");
-	
 }
 
 if(isset($_POST['Post']))
