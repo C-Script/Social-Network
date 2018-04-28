@@ -1,7 +1,7 @@
 <!--This is where we handle user registration-->
 
 <?php
-require 'php/classes/User.php';
+require 'php/classes/user.php';
 $reg_error="";
 $reg_success="";
 
@@ -26,7 +26,7 @@ if(isset($_POST['reg_submit'])){
         $reg_error="Passwords should be the same!";
     }
     else {
-        $new_user= new User();
+        $new_user= new user();
         $created=$new_user->add($user_data);    
         if($created)
         {

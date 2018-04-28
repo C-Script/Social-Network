@@ -1,13 +1,17 @@
 <?php
 //Redirecting to the register page if the value isset($_SESSION['email']) is not set
 //We set that value when the login is successful
+// this is just typical to index_handling.php 
+
 require 'php/classes/Post.php';
 if(!isset($_SESSION['email'])){
-    header("Location: register.php");    
+	header("Location: register.php");
+	   
 }
-if(isset($_POST['logout'])){
+ if(isset($_POST['logout'])){
     session_destroy();
-    header("Location: register.php");
+	header("Location: register.php");
+	
 }
 if(isset($_POST['Post']))
 {
@@ -17,5 +21,5 @@ if(isset($_POST['Post']))
 	//refresh user posts query in the header page 
 	$current_user_posts=$current_user->getAllPosts();
 	//refresh the page to view the posts
-	header("Location: index.php");
+	header("Location: profile.php");
 }

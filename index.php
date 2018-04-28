@@ -26,7 +26,8 @@
 
         <!--The partial where the user posts appear-->
         <?php
-            include 'partials/my_posts.php'
+            include 'partials/display_posts.php';
+            posts($current_user);
         ?>
 
         <!--Log out button-->

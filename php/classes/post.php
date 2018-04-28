@@ -1,5 +1,4 @@
 <?php
-
 class Post {
 	public $owner_id;
 	public $post_id;
@@ -35,19 +34,15 @@ public function get($columnName)//get one property of that post like num_likes o
 	$query="SELECT $columnName from posts where post_id='$this->post_id'";
 	$query_run=mysql_fetch_assoc(mysql_query($query));
 	return $query_run['$columnName'];
-
 }
 public function getAll()//get all post info like ,post_id,owner_id,post,likes...etc
 {
 	$query="SELECT * from posts where post_id='$this->post_id'";
 	$query_run=mysql_fetch_assoc(mysql_query($query));
 	return $query_run;
-
 }
-
 public function update($columname,$value)//update a certain property in the post like num_likes,shares..etc
 {
-
 	$query="UPDATE posts SET $columname = $value WHERE posts.post_id ='$this->post_id'";
 	$query_run=mysql_query($query);
 	if($query_run)
@@ -59,20 +54,16 @@ public function update($columname,$value)//update a certain property in the post
 		return 0;
 	}
 }
-
 public function add($post_text)//add new post to the table posts
 {
 	$date_added = date("Y-m-d H:i:s");
-
 	$query="INSERT INTO posts (owner, post, date_added) VALUES ('$this->owner_id', '$post_text', '$date_added')";
 	$query_run=mysql_query($query);
-
 	//Increment the number of posts for the owner
 	$owner_of_post=new User($this->owner_id);
 	$num_posts=$owner_of_post->get("num_posts");
 	$num_posts+=1;
 	$owner_of_post->update("num_posts",$num_posts);
-
 	if($query_run)
 	{
 		//here we successfully added the post so we need to get its id and save it in $this->post_id
@@ -85,7 +76,6 @@ public function add($post_text)//add new post to the table posts
 		return 0;
 	}
 }
-
 public function remove()//remove that post from the table 
 {
 	$query="DELETE FROM posts WHERE post_id='$this->post_id'";
@@ -113,11 +103,6 @@ public function remove1($id)//deleting a post from database according to a known
 		
 		return 0;
 	}
-
 }
-
 }
-
-
-
 ?>

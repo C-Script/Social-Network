@@ -1,26 +1,18 @@
-<!--This is the profile of each user-->
+<!--This is the profile of the user as he sees it-->
 
 <?php
     session_start();     
-    
+    include 'partials/header.php';
+   
+    //if you entered this if you will see the profile of another user
+    if(isset($_GET['id'])) //the id that the user entered..it consists of (firstname.databaseid) 
+           include 'php/others.php';
+    else
+           include 'php/me.php';
+     
 ?>
-<html lang="en">
-    <head>
-        <title>World Changers</title>
-        <link rel="stylesheet" type="text/css" href="styles/profile.css">
-        <link href="https://fonts.googleapis.com/css?family=Hi+Melody" rel="stylesheet">
-    </head>
-    <body>
-        <?php
-            include 'partials/header.php';
-        ?>
         
-        This is the profile of <?=$current_user_info['first_name']?> <?=$current_user_info['last_name']?>
+       
+      
 
-        <!--The partial where the user posts appear-->
-        <?php
-            include 'partials/my_posts.php'
-        ?>
-
-    </body>
-</html>
+ 
