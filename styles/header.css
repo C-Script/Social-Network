@@ -29,3 +29,33 @@
 a, a:active {
     text-decoration: none !important;
 }
+
+.post_status_area {
+    margin-left: 35vw
+}
+
+.posts_area {
+    margin-left: 35vw
+}
+
+.posts_area hr {
+    width: 300px;
+    margin-left: 10px
+}
+
+.status_post {
+    width:96%;
+    font-size: 15px;
+    padding: 0px 5px;
+    min-height: 75px;
+}
+
+.post_profile_pic {
+    float: left;
+    margin-right: 7px;
+}
+
+.post_profile_pic img {
+    border-radius: 5px;
+
+}

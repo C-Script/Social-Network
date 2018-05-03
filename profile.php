@@ -21,9 +21,14 @@ if($profile_user_info['education']!=NULL)
         echo 'his education is: '.$profile_user_info['education'];
     }
 
-posts($profile_user);
-
 ?>
+
+<div class="posts_area">
+    <?php    
+        $post=new Post($current_user_info['id']);
+        $post->loadPostsFriends();
+    ?>
+</div>
 
 
 <!--form to log out-->

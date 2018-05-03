@@ -18,17 +18,21 @@
         Welcomee <?=$current_user_info['first_name']?>
 
         <!--The form where the user submits his new post-->
-        <form action="index.php" method="POST">
-              <input type="text" placeholder="Wanna Change The World ?!" name="post_value">
-            <input type="submit" value="Post" name="Post">            
-        </form>
-
-
+        <div class="post_status_area">
+            <form action="index.php" method="POST">
+                <input type="text" placeholder="Wanna Change The World ?!" name="post_value">
+                <input type="submit" value="Post" name="Post">            
+            </form>
+        </div>
         <!--The partial where the user posts appear-->
-        <?php
-            include 'partials/display_posts.php';
-            posts($current_user);
-        ?>
+        <div class="posts_area">
+            <?php
+                include 'php/index_handling.php';
+            
+                $post=new Post($current_user_info['id']);
+                $post->loadPostsFriends();
+            ?>
+        </div>
 
         <!--Log out button-->
         <form action="index.php" method="POST">
@@ -37,6 +41,3 @@
     </body>
 </html>
 
-<?php 
- include 'php/index_handling.php';
-?>

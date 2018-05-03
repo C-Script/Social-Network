@@ -76,7 +76,7 @@ public function update($columname,$value)
 }
 public function add($user_info)
 {
-	$query="INSERT INTO users (id, first_name, last_name, email, password, age, num_posts, num_likes, friends,profile_name,education,profile_image) VALUES (NULL, '$user_info[0]', '$user_info[1]', '$user_info[2]', '$user_info[3]', '$user_info[4]', NULL, NULL, NULL,NULL,NULL,NULL)";
+	$query="INSERT INTO users (id, first_name, last_name, email, password, age, num_posts, num_likes, friends,profile_name,education,profile_image, friend_array) VALUES (NULL, '$user_info[0]', '$user_info[1]', '$user_info[2]', '$user_info[3]', '$user_info[4]', NULL, NULL, NULL,NULL,NULL,NULL, ',')";
 	$query_run=mysql_query($query);
 	if($query_run)
 	{
@@ -88,8 +88,18 @@ public function add($user_info)
 		$query="SELECT first_name from users where email='$user_info[2]'";
 		$query_run=mysql_fetch_assoc(mysql_query($query));
 		$first_name=strtolower($query_run['first_name']);
+
+		//Setting profile_name
 		$query="UPDATE users SET profile_name = '$first_name$this->user_id' WHERE id ='$this->user_id'";
 		mysql_query($query);
+
+		//Setting profile image
+		$rand=rand(1,16);
+		$profile_image="assets/images/profile_pics/defaults/{$rand}.png";
+
+		$query="UPDATE users SET profile_image = '$profile_image' WHERE id ='$this->user_id'";
+		mysql_query($query);
+
 		return 1;
 	}
 	else

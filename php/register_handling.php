@@ -20,7 +20,7 @@ if(isset($_POST['reg_submit'])){
     */
 
     $reg_password = $user_data[3]; 
-    $reg_password2 = $user_data[4];   
+    $reg_password2 = $user_data[4];
     
     if($reg_password!=$reg_password2){
         $reg_error="Passwords should be the same!";
@@ -30,7 +30,6 @@ if(isset($_POST['reg_submit'])){
         $created=$new_user->add($user_data);    
         if($created)
         {
-            
              $reg_error="";
              $reg_success=" \n Congratulations, you can sign in now";
         }

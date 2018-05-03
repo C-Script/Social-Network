@@ -21,7 +21,7 @@ class Post {
         $this->owner_id='';
         $this->post_id='';
     	}
-}
+	}
    public function __construct1($id) {
         $this->owner_id=$id;
     }
@@ -29,80 +29,199 @@ class Post {
         $this->owner_id=$id;
         $this->post_id=$post_id;
     }
-public function get($columnName)//get one property of that post like num_likes or num_shares ...etc
-{
-	$query="SELECT $columnName from posts where post_id='$this->post_id'";
-	$query_run=mysql_fetch_assoc(mysql_query($query));
-	return $query_run['$columnName'];
-}
-public function getAll()//get all post info like ,post_id,owner_id,post,likes...etc
-{
-	$query="SELECT * from posts where post_id='$this->post_id'";
-	$query_run=mysql_fetch_assoc(mysql_query($query));
-	return $query_run;
-}
-public function update($columname,$value)//update a certain property in the post like num_likes,shares..etc
-{
-	$query="UPDATE posts SET $columname = $value WHERE posts.post_id ='$this->post_id'";
-	$query_run=mysql_query($query);
-	if($query_run)
+	public function get($columnName)//get one property of that post like num_likes or num_shares ...etc
 	{
-		return 1;
+		$query="SELECT $columnName from posts where post_id='$this->post_id'";
+		$query_run=mysql_fetch_assoc(mysql_query($query));
+		return $query_run['$columnName'];
 	}
-	else
+	public function getAll()//get all post info like ,post_id,owner_id,post,likes...etc
 	{
-		return 0;
+		$query="SELECT * from posts where post_id='$this->post_id'";
+		$query_run=mysql_fetch_assoc(mysql_query($query));
+		return $query_run;
 	}
-}
-public function add($post_text)//add new post to the table posts
-{
-	$date_added = date("Y-m-d H:i:s");
-	$query="INSERT INTO posts (owner, post, date_added) VALUES ('$this->owner_id', '$post_text', '$date_added')";
-	$query_run=mysql_query($query);
-	//Increment the number of posts for the owner
-	$owner_of_post=new User($this->owner_id);
-	$num_posts=$owner_of_post->get("num_posts");
-	$num_posts+=1;
-	$owner_of_post->update("num_posts",$num_posts);
-	if($query_run)
+	public function update($columname,$value)//update a certain property in the post like num_likes,shares..etc
 	{
-		//here we successfully added the post so we need to get its id and save it in $this->post_id
-		$post_data=mysql_fetch_assoc(mysql_query("SELECT post_id FROM posts WHERE owner=$this->owner_id"));
-		$this->post_id=$post_data['post_id'];	
-		return 1;
+		$query="UPDATE posts SET $columname = $value WHERE posts.post_id ='$this->post_id'";
+		$query_run=mysql_query($query);
+		if($query_run)
+		{
+			return 1;
+		}
+		else
+		{
+			return 0;
+		}
 	}
-	else
+	public function add($post_text)//add new post to the table posts
 	{
-		return 0;
+		$date_added = date("Y-m-d H:i:s");
+		$query="INSERT INTO posts (owner, post, date_added) VALUES ('$this->owner_id', '$post_text', '$date_added')";
+		$query_run=mysql_query($query);
+		//Increment the number of posts for the owner
+		$owner_of_post=new User($this->owner_id);
+		$num_posts=$owner_of_post->get("num_posts");
+		$num_posts+=1;
+		$owner_of_post->update("num_posts",$num_posts);
+		if($query_run)
+		{
+			//here we successfully added the post so we need to get its id and save it in $this->post_id
+			$post_data=mysql_fetch_assoc(mysql_query("SELECT post_id FROM posts WHERE owner=$this->owner_id"));
+			$this->post_id=$post_data['post_id'];	
+			return 1;
+		}
+		else
+		{
+			return 0;
+		}
 	}
-}
-public function remove()//remove that post from the table 
-{
-	$query="DELETE FROM posts WHERE post_id='$this->post_id'";
-	$query_run=mysql_query($query);
-	if($query_run)
+	public function remove()//remove that post from the table 
 	{
-		return 1;
+		$query="DELETE FROM posts WHERE post_id='$this->post_id'";
+		$query_run=mysql_query($query);
+		if($query_run)
+		{
+			return 1;
+		}
+		else
+		{
+			return 0;
+		}
 	}
-	else
+	public function remove1($id)//deleting a post from database according to a known post_id no matter if this post belongs to this user_id or not 
 	{
-		return 0;
+		$query="DELETE FROM posts WHERE post_id='$id'";
+		$query_run=mysql_query($query);
+		if($query_run)
+		{
+			
+			return 1;
+		}
+		else
+		{
+			
+			return 0;
+		}
 	}
-}
-public function remove1($id)//deleting a post from database according to a known post_id no matter if this post belongs to this user_id or not 
-{
-	$query="DELETE FROM posts WHERE post_id='$id'";
-	$query_run=mysql_query($query);
-	if($query_run)
-	{
-		
-		return 1;
+
+
+
+
+
+
+
+	public function loadPostsFriends(){
+		$str = ""; //String to return
+        $data=mysql_query("SELECT * FROM posts ORDER BY post_id DESC");
+
+
+		while($row = mysql_fetch_assoc($data)){
+            $id=$row['post_id'];
+            $body=$row['post'];
+            $added_by=$row['owner'];
+            $date_time=$row['date_added'];          
+			
+
+            $user_details_query = mysql_query("SELECT first_name, last_name, profile_image, profile_name FROM users where id='$added_by'");
+            $user_row=mysql_fetch_assoc($user_details_query);
+            $first_name=$user_row['first_name'];
+            $last_name=$user_row['last_name'];
+			$profile_pic=$user_row['profile_image'];
+			$profile_name=$user_row['profile_name'];
+
+
+			//Timeframe
+			$start_date = new DateTime($date_time); //Time of post
+            $end_date = new DateTime("now"); //Current time
+            $interval = $start_date->diff($end_date); //Difference bet dates
+            if($interval->y>=1){
+                if($interval == 1)
+                    $time_message = $interval->y . " year ago"; // 1 year ago
+                else
+                    $time_message = $interval->y . " years ago"; // 1+ year ago                    
+            }
+            else if($interval->m>=1){
+                if($interval->d == 0){
+                    $days = " ago";
+                }
+                else if($interval->d==1){
+                    $days = $interval->d . " day ago";
+                }
+                else{
+                    $days = $interval->d . " days ago";
+                }
+
+                if($interval-> m ==1){
+                    $time_message = $interval->m . " month". $days;
+                }
+                else {
+                    $time_message = $interval->m . " months". $days;
+                }
+
+            }
+            else if($interval->d>=1){
+                if($interval->d==1){
+                    $time_message = "Yesterday";
+                }
+                else{
+                    $time_message = $interval->d . " days ago";
+                }
+            }
+            else if($interval->h>=1){
+                if($interval->h==1){
+                    $time_message = $interval->h . " hour ago";
+                }
+                else{
+                    $time_message = $interval->d . " hours ago";
+                }
+            }
+            else if($interval->i>=1){
+                if($interval->i==1){
+                    $time_message = $interval->i . " minutes ago";
+                }
+                else{
+                    $time_message = $interval->i . " minutes ago";
+                }
+            }
+            else {
+                if($interval->h<30){
+                    $time_message = "Just now";
+                }
+                else{
+                    $time_message = $interval->d . " seconds ago";
+                }
+            }
+
+            $str .= "<div class='status_post'>
+                            <div class='post_profile_pic'>
+                                <img src='$profile_pic' width='50'>
+                            </div>
+                            <div class='posted_by' style='color:#ACACAC;'>
+                                <a href='$profile_name'>$first_name $last_name</a>&nbsp;&nbsp;&nbsp;&nbsp; $time_message
+                            </div>
+                            <div id='post_body'>
+                                $body
+                                <br>
+                            </div>
+                    </div>
+                    <hr>
+            ";
+
+        }
+
+        echo $str;
+
+
 	}
-	else
-	{
-		
-		return 0;
-	}
-}
+
+
+
+
+
+
+
+
+
 }
 ?>
