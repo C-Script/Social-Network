@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 21, 2018 at 10:26 PM
+-- Generation Time: May 04, 2018 at 01:39 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 5.6.34
 
@@ -37,21 +37,20 @@ CREATE TABLE `users` (
   `age` int(11) NOT NULL,
   `num_posts` int(255) DEFAULT NULL,
   `num_likes` int(255) DEFAULT NULL,
-  `friends` int(255) DEFAULT NULL,
   `profile_name` varchar(255) DEFAULT NULL,
   `education` text,
-  `profile_image` text
+  `profile_image` text,
+  `friend_array` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`, `age`, `num_posts`, `num_likes`, `friends`, `profile_name`, `education`, `profile_image`) VALUES
-(15, 'ahmed', 'salama', 'a@gmail.com', '123', 123, 8, NULL, NULL, 'ahmed.15', 'ain bta3a', ''),
-(16, 'mamdouh', 'darwish', 'mam@gmail.com', '321', 321, 5, NULL, NULL, 'mamdouh.16', '0', ''),
-(20, 'hamada', 'eldada', 'h@g.com', '1', 1, 2, NULL, NULL, 'hamada.20', 'ain shams university', NULL),
-(21, 'laila', 'hisham', 'hish@gmail.com', '12', 12, NULL, NULL, NULL, 'laila.21', 'ain shams university', NULL);
+INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`, `age`, `num_posts`, `num_likes`, `profile_name`, `education`, `profile_image`, `friend_array`) VALUES
+(38, 'ÙAbdo', 'Moha', '1@1.com', '111', 111, 2, NULL, 'ùabdo38', NULL, 'assets/images/profile_pics/defaults/5.png', ','),
+(39, 'Ahmed', 'Shawky', '2@2.com', '111', 111, 3, NULL, 'ahmed39', NULL, 'assets/images/profile_pics/defaults/7.png', ','),
+(40, 'Gehad', 'Gresha', '3@3.com', '111', 111, 2, NULL, 'gehad40', NULL, 'assets/images/profile_pics/defaults/5.png', ',');
 
 --
 -- Indexes for dumped tables
@@ -71,7 +70,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -5,6 +5,7 @@
 
 require 'php/classes/Post.php';
 
+
 if(!isset($_SESSION['email'])){
 	header("Location: register.php");
 }
@@ -14,16 +15,6 @@ if(!isset($_SESSION['email'])){
 	header("Location: register.php");
 }
 
-if(isset($_POST['Post']))
-{
-	//Create a new post in the table posts
-	$new_post=new Post($current_user_info['id']);
-	$new_post->add($_POST['post_value']);
-	//refresh user posts query in the header page 
-	$current_user_posts=$current_user->getAllPosts();
-	//refresh the page to view the posts
-	header("Location: profile.php");
-}
 
 
 $profile_user=new user('profile_name',$_GET['profile_name']);
@@ -33,4 +24,18 @@ if($_GET['profile_name']!=$profile_user_info['profile_name'])
 {
 	echo ' No such user ';
 	exit();
+}
+
+if(isset($_POST['remove_friend'])){
+	$user= new User($current_user_info['id']);
+	$user->removeFriend($profile_user_info['id']);
+}
+
+if(isset($_POST['add_friend'])){
+	$user= new User($current_user_info['id']);
+	$user->sendRequest($profile_user_info['id']);
+}
+
+if(isset($_POST['respond_request'])){
+	header("Location: requests.php");
 }

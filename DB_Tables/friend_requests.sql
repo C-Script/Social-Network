@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 04, 2018 at 01:38 AM
+-- Generation Time: May 04, 2018 at 01:39 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 5.6.34
 
@@ -25,16 +25,13 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comments`
+-- Table structure for table `friend_requests`
 --
 
-CREATE TABLE `comments` (
-  `comment_id` int(11) NOT NULL,
-  `owner` varchar(200) NOT NULL,
-  `post_id` int(11) NOT NULL,
-  `comment` text NOT NULL,
-  `likes` int(11) NOT NULL,
-  `replay` int(11) NOT NULL
+CREATE TABLE `friend_requests` (
+  `id` int(11) NOT NULL,
+  `user_to` int(11) NOT NULL,
+  `user_from` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -42,20 +39,20 @@ CREATE TABLE `comments` (
 --
 
 --
--- Indexes for table `comments`
+-- Indexes for table `friend_requests`
 --
-ALTER TABLE `comments`
-  ADD PRIMARY KEY (`comment_id`);
+ALTER TABLE `friend_requests`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `comments`
+-- AUTO_INCREMENT for table `friend_requests`
 --
-ALTER TABLE `comments`
-  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `friend_requests`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

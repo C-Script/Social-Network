@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 21, 2018 at 10:25 PM
+-- Generation Time: May 04, 2018 at 01:39 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 5.6.34
 
@@ -43,24 +43,13 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`post_id`, `owner`, `post`, `likes`, `shares`, `comments`, `date_added`) VALUES
-(23, 12, 'Be happy', 0, 0, 0, '2018-04-20 18:25:17'),
-(24, 0, 'yes I wanna change the world', 0, 0, 0, '2018-04-21 16:03:01'),
-(25, 5, 'yes I wanna change the world', 0, 0, 0, '2018-04-21 16:05:35'),
-(26, 12, 'hello world !', 0, 0, 0, '2018-04-21 16:12:29'),
-(27, 16, 'I wanna change the world', 0, 0, 0, '2018-04-21 19:11:21'),
-(28, 16, 'I wanna change the world,agian', 0, 0, 0, '2018-04-21 19:11:49'),
-(29, 16, 'Ya allah ', 0, 0, 0, '2018-04-21 19:12:21'),
-(30, 15, 'Hi guys', 0, 0, 0, '2018-04-21 19:13:52'),
-(31, 15, 'ya gd3an mys7sh', 0, 0, 0, '2018-04-21 19:14:18'),
-(32, 15, 'mra ah w mra la2', 0, 0, 0, '2018-04-21 19:14:29'),
-(33, 15, 'tb mnta 7lw aho', 0, 0, 0, '2018-04-21 19:14:39'),
-(34, 15, 'sba7 el5ir', 0, 0, 0, '2018-04-21 19:14:45'),
-(35, 0, 'hi', 0, 0, 0, '2018-04-21 21:48:38'),
-(36, 16, 'hi', 0, 0, 0, '2018-04-21 21:49:09'),
-(37, 16, 'bye bye', 0, 0, 0, '2018-04-21 21:49:14'),
-(38, 0, 'hi', 0, 0, 0, '2018-04-21 22:05:52'),
-(39, 20, 'hi', 0, 0, 0, '2018-04-21 22:06:22'),
-(40, 20, 'bye bye', 0, 0, 0, '2018-04-21 22:06:31');
+(177, 39, 'I love tomato', 0, 0, 0, '2018-05-04 01:36:20'),
+(178, 39, 'Can you do as much good as I can?', 0, 0, 0, '2018-05-04 01:37:03'),
+(179, 39, 'Hobba lallo', 0, 0, 0, '2018-05-04 01:37:14'),
+(180, 38, 'Men zaman, 3aref?', 0, 0, 0, '2018-05-04 01:37:40'),
+(181, 38, 'Dmoo3 ashwa2..', 0, 0, 0, '2018-05-04 01:37:46'),
+(182, 40, 'Meen fil 7wari matwaladshi baree2?!', 0, 0, 0, '2018-05-04 01:38:10'),
+(183, 40, '3arfa? A7lamek tamou7a', 0, 0, 0, '2018-05-04 01:38:23');
 
 --
 -- Indexes for dumped tables
@@ -80,7 +69,7 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=184;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
