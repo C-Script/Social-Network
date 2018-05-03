@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 04, 2018 at 01:39 AM
+-- Generation Time: May 04, 2018 at 01:57 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 5.6.34
 
@@ -48,7 +48,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`, `age`, `num_posts`, `num_likes`, `profile_name`, `education`, `profile_image`, `friend_array`) VALUES
-(38, 'ÙAbdo', 'Moha', '1@1.com', '111', 111, 2, NULL, 'ùabdo38', NULL, 'assets/images/profile_pics/defaults/5.png', ','),
+(38, 'ÙAbdo', 'Moha', '1@1.com', '111', 111, 2, NULL, 'abdo38', NULL, 'assets/images/profile_pics/defaults/5.png', ','),
 (39, 'Ahmed', 'Shawky', '2@2.com', '111', 111, 3, NULL, 'ahmed39', NULL, 'assets/images/profile_pics/defaults/7.png', ','),
 (40, 'Gehad', 'Gresha', '3@3.com', '111', 111, 2, NULL, 'gehad40', NULL, 'assets/images/profile_pics/defaults/5.png', ',');
 
