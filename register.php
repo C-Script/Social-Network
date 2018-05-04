@@ -3,7 +3,8 @@
     session_start();     
    // require 'php/db_init.php';
     require 'php/register_handling.php';
-    require 'php/login_handling.php';   
+    require 'php/login_handling.php';  
+    require 'php/admin_handling.php'; 
 ?>
 
 <html lang="en">
@@ -25,7 +26,7 @@
                 include 'partials/login.php';
             ?>
 
-
+                       
             <!--REGISTRATION PART-->
             <div class="reg">
                 <h2>I am a new user</h2>

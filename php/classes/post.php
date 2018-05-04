@@ -1,4 +1,5 @@
 <?php
+require 'comment.php';
 class Post {
 	public $owner_id;
 	public $post_id;
@@ -104,30 +105,30 @@ class Post {
 			return 0;
 		}
 	}
-
-
 	public function loadPostsFriends(){
 		$str = ""; //String to return
         $data=mysql_query("SELECT * FROM posts ORDER BY post_id DESC");
-
-
 		while($row = mysql_fetch_assoc($data)){
             $id=$row['post_id'];
             $body=$row['post'];
             $added_by=$row['owner'];
             $date_time=$row['date_added'];          
-            
+            if(isset($_POST["delete{$id}"]))
+               {
+                $query="DELETE FROM posts WHERE post_id='$id'";
+                $query_run=mysql_query($query);
+                header("Refresh:0");
+               }
             $user_logged_obj = new User($_SESSION['id']);
-            if($user_logged_obj->isFriend($added_by) || $user_logged_obj->isMe($added_by)){
-
+            if($user_logged_obj->isFriend($added_by) || $user_logged_obj->isMe($added_by)||$_SESSION['id']=="admin"){
+            	$postComments_obj=new Comment($added_by,$id);
+            	$comments=$postComments_obj->loadPostsComments();//returns an html string conains all comments of that post
                 $user_details_query = mysql_query("SELECT first_name, last_name, profile_image, profile_name FROM users where id='$added_by'");
                 $user_row=mysql_fetch_assoc($user_details_query);
                 $first_name=$user_row['first_name'];
                 $last_name=$user_row['last_name'];
                 $profile_pic=$user_row['profile_image'];
                 $profile_name=$user_row['profile_name'];
-
-
                 //Timeframe
                 $start_date = new DateTime($date_time); //Time of post
                 $end_date = new DateTime("now"); //Current time
@@ -148,14 +149,12 @@ class Post {
                     else{
                         $days = $interval->d . " days ago";
                     }
-
                     if($interval-> m ==1){
                         $time_message = $interval->m . " month". $days;
                     }
                     else {
                         $time_message = $interval->m . " months". $days;
                     }
-
                 }
                 else if($interval->d>=1){
                     if($interval->d==1){
@@ -170,7 +169,7 @@ class Post {
                         $time_message = $interval->h . " hour ago";
                     }
                     else{
-                        $time_message = $interval->d . " hours ago";
+                        $time_message = $interval->h . " hours ago";
                     }
                 }
                 else if($interval->i>=1){
@@ -186,10 +185,21 @@ class Post {
                         $time_message = "Just now";
                     }
                     else{
-                        $time_message = $interval->d . " seconds ago";
+                        $time_message = $interval->s . " seconds ago";
                     }
                 }
-
+                if($_SESSION['id']!="admin")
+                    $form_str="<form method='POST'>
+                    <input type='text' placeholder='Add Comment' name='comment_value'>
+                    <input type='submit' value='Comment' name='comment'>  
+                    <input type='hidden' name='post_id' value='$id'>
+                    </form>";
+                else
+                    $form_str="<form method='POST'>
+                    <input type='text' placeholder='Add Comment' name='comment_value'>
+                    <input type='submit' value='delete' name='delete{$id}'>  
+                    <input type='hidden' name='post_id' value='$id'>
+                    </form>";
                 $str .= "<div class='status_post'>
                                 <div class='post_profile_pic'>
                                     <img src='$profile_pic' width='50'>
@@ -201,39 +211,42 @@ class Post {
                                     $body
                                     <br>
                                 </div>
+                                ".$form_str."
+                                <h4>Comments</h4>
+                                ".$comments."
                         </div>
                         <hr>
                 ";
-
             }
         }
-
         echo $str;
     }
     
-
     public function loadMyPosts(){
 		$str = ""; //String to return
         $data=mysql_query("SELECT * FROM posts ORDER BY post_id DESC");
-
-
 		while($row = mysql_fetch_assoc($data)){
             $id=$row['post_id'];
             $body=$row['post'];
             $added_by=$row['owner'];
             $date_time=$row['date_added'];          
-            
+           
+            if(isset($_POST["delete{$id}"]))
+               {
+                $query="DELETE FROM posts WHERE post_id='$id'";
+                $query_run=mysql_query($query);
+                header("Refresh:0");
+               }
             $user_logged_obj = new User($this->owner_id);
             if($user_logged_obj->isMe($added_by)){
-
+            	$postComments_obj=new Comment($added_by,$id);
+            	$comments=$postComments_obj->loadPostsComments();//returns an html string conains all comments of that post
                 $user_details_query = mysql_query("SELECT first_name, last_name, profile_image, profile_name FROM users where id='$added_by'");
                 $user_row=mysql_fetch_assoc($user_details_query);
                 $first_name=$user_row['first_name'];
                 $last_name=$user_row['last_name'];
                 $profile_pic=$user_row['profile_image'];
                 $profile_name=$user_row['profile_name'];
-
-
                 //Timeframe
                 $start_date = new DateTime($date_time); //Time of post
                 $end_date = new DateTime("now"); //Current time
@@ -254,14 +267,12 @@ class Post {
                     else{
                         $days = $interval->d . " days ago";
                     }
-
                     if($interval-> m ==1){
                         $time_message = $interval->m . " month". $days;
                     }
                     else {
                         $time_message = $interval->m . " months". $days;
                     }
-
                 }
                 else if($interval->d>=1){
                     if($interval->d==1){
@@ -295,8 +306,21 @@ class Post {
                         $time_message = $interval->d . " seconds ago";
                     }
                 }
-
-                $str .= "<div class='status_post'>
+                if($_SESSION['id']!="admin")
+                    $form_str="<form method='POST'>
+                    <input type='text' placeholder='Add Comment' name='comment_value'>
+                    <input type='submit' value='Comment' name='comment'>  
+                    <input type='hidden' name='post_id' value='$id'>
+                    </form>";
+                else
+                    $form_str="<form method='POST'>
+                    <input type='text' placeholder='Add Comment' name='comment_value'>
+                    <input type='submit' value='Delete' name='delete{$id}'>  
+                    <input type='hidden' name='post_id' value='$id'>
+                    </form>";    
+                  
+            
+ 						$str .= "<div class='status_post'>
                                 <div class='post_profile_pic'>
                                     <img src='$profile_pic' width='50'>
                                 </div>
@@ -307,25 +331,15 @@ class Post {
                                     $body
                                     <br>
                                 </div>
+                                ".$form_str."
+                                <h4>Comments</h4>
+                                ".$comments."
                         </div>
                         <hr>
                 ";
-
             }
         }
-
         echo $str;
-
-
 	}
-
-
-
-
-
-
-
-
-
 }
 ?>

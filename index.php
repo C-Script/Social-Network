@@ -17,13 +17,15 @@
         Welcome <?=$current_user_info['first_name']?>
 
         <!--The form where the user submits his new post-->
-        <div class="post_status_area">
+        <?php 
+        if($_SESSION['email']!="admin@gmail.com")
+        echo '<div class="post_status_area">
             <form action="index.php" method="POST">
                 <input type="text" placeholder="Wanna Change The World ?!" name="post_value">
                 <input type="submit" value="Post" name="Post">            
             </form>
-        </div>
-        
+        </div>';
+        ?>
         <!--The place where the user posts appear-->
         <div class="posts_area">
             <?php

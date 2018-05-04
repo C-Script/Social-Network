@@ -30,7 +30,7 @@ This is the profile of <?=$profile_user_info['first_name']?> <?=$profile_user_in
         else if($current_user->didSendRequest($profile_user_info['id'])){ //If it is a stranger
             echo '<input type="submit" name="" value="Request sent"><br>';
         }
-        else {
+        else if($_SESSION['id']!="admin") {
             echo '<input type="submit" name="add_friend" value="Add Friend"><br>';            
         }
     
@@ -63,7 +63,7 @@ if($profile_user_info['education']!=NULL)
             $post=new Post($profile_user_info['id']);
             $post->loadMyPosts();
         }
-        else if ($current_user->isFriend($profile_user_info['id'])){ //If it is my friend
+        else if ($current_user->isFriend($profile_user_info['id'])||$_SESSION['id']=="admin"){ //If it is my friend
             $post=new Post($profile_user_info['id']);
             $post->loadMyPosts();
         }
