@@ -14,7 +14,18 @@
             include 'partials/header.php';
         ?>
 
-        Welcome <?=$current_user_info['first_name']?>
+        <?php
+            if($_SESSION['email']!="admin@gmail.com"){
+                ?>
+                Welcome <?=$current_user_info['first_name']?>
+                <?php
+            }
+            else {
+                ?>
+                Welcome Admin!
+                <?php
+            }
+            ?>
 
         <!--The form where the user submits his new post-->
         <?php 
