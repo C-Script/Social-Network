@@ -74,3 +74,7 @@ input[type="text"] {
 .delete_post_button{
     float: right
 }
+
+.comment_time_message{
+    color:#ACACAC
+}

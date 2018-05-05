@@ -188,7 +188,7 @@ public function loadPostsComments(){
                 $str .= "<span>
                               <a href='$profile_name'>$first_name $last_name</a>: $body
                               <br>
-                              &nbsp;&nbsp;&nbsp;&nbsp; ($time_message)
+                              &nbsp;&nbsp;&nbsp;&nbsp; <span class='comment_time_message'>($time_message)<span>
                          </span>
                         <br>
                 ";

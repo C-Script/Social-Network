@@ -1,7 +1,6 @@
 <!--This is the main (home) page-->
 <?php
     session_start();     
-    
 ?>
 
 <html lang="en">
@@ -12,6 +11,7 @@
     <body>
         <?php
             include 'partials/header.php';
+            include 'php/index_handling.php';    
         ?>
 
         <?php
@@ -40,8 +40,7 @@
         <!--The place where the user posts appear-->
         <div class="posts_area">
             <?php
-                include 'php/index_handling.php';
-            
+                
                 $post=new Post($current_user_info['id']);
                 $post->loadPostsFriends();
             ?>
