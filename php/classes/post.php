@@ -319,8 +319,7 @@ class Post {
                     </form>";
                 else
                     $form_str="<form method='POST'>
-                    <input type='text' placeholder='Add Comment' name='comment_value'>
-                    <input type='submit' value='Delete' name='delete{$id}'>  
+                    <input class='delete_post_button' type='submit' value='Delete Post' name='delete{$id}'>                      
                     <input type='hidden' name='post_id' value='$id'>
                     </form>";    
                   

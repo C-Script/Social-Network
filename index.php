@@ -46,7 +46,13 @@
             ?>
         </div>
 
-        
+        <div>
+            <?php
+                if($current_user_info['friend_array']!=","){
+                    include 'suggestedFriends.php';
+                }
+            ?>
+        </div>
 
     </body>
 </html>

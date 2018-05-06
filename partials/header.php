@@ -38,8 +38,10 @@
         <?php
     }
         ?>
+            
+        <button><a href="suggestedFriends.php">Go to graph</a></button>
     
-
+    
     <!--form to log out-->
     <form action="index.php" method="POST">
         <input type="submit" value="Log out" name="logout">            

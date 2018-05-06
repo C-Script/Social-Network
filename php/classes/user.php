@@ -237,6 +237,25 @@ class User {
 		}
 	}
 
+
+	public function getPeople(){
+		$rows = mysql_query("SELECT * FROM users");
+		return $rows;
+	}
+
+	public function getFriends(){
+		$query="SELECT friend_array from users where id='$this->user_id'";
+		$query_run=mysql_fetch_assoc(mysql_query($query));
+		$friend_array = $query_run['friend_array'];
+
+		$friends_str=substr($friend_array, 1, strlen($friend_array)-2);
+		$friends_arr=explode(",",$friends_str);
+
+		return $friends_arr;
+
+		//if we want to view the arr as a string, we can use json_encode($friends_arr)
+	}
+
 }
 
 
