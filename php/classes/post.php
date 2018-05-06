@@ -201,7 +201,7 @@ class Post {
                     </form>";
                 $str .= "<div class='status_post'>
                                 <div class='post_profile_pic'>
-                                    <img src='$profile_pic' width='50'>
+                                    <a href='$profile_name'><img src='$profile_pic' width='50'></a>
                                 </div>
                                 <div class='posted_by' style='color:#ACACAC;'>
                                     <a href='$profile_name'>$first_name $last_name</a>&nbsp;&nbsp;&nbsp;&nbsp; $time_message
@@ -326,7 +326,7 @@ class Post {
             
  						$str .= "<div class='status_post'>
                                 <div class='post_profile_pic'>
-                                    <img src='$profile_pic' width='50'>
+                                    <a href='$profile_name'><img src='$profile_pic' width='50'></a>
                                 </div>
                                 <div class='posted_by' style='color:#ACACAC;'>
                                     <a href='$profile_name'>$first_name $last_name</a>&nbsp;&nbsp;&nbsp;&nbsp; $time_message

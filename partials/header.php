@@ -25,13 +25,13 @@
     <?php
     if($_SESSION['email']=="admin@gmail.com") {
         ?>
-            <span class="header_logo"><a href="index.php">Change Makers</a></span>
+            <a href="index.php"><span class="header_logo">Change Makers</span></a>
             <button class="people_button"><a href="people.php">View / Delete Users</a></button>
             <button class="people_button"><a href="index.php">View / Delete Posts</a></button>            
         <?php
     } else {
         ?>
-            <span class="header_logo"><a href="index.php">Change Makers</a></span>
+            <a href="index.php"><span class="header_logo">Change Makers</span></a>
             <span class="header_buttons"><a href=<?=$current_user_info['profile_name']?>>My Profile</a></span>
             <button class="friend_req_button"><a href="requests.php">Show my friend requests</a></button>
             <button class="people_button"><a href="people.php">Check other Change Makers</a></button>

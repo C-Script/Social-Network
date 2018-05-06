@@ -18,7 +18,7 @@
     display: inline-block;
     float: left;
 }
-.header_logo a, .header_logo a:active {
+.header_logo {
     color: darkturquoise;
 }
 

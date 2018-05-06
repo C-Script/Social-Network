@@ -10,6 +10,8 @@
     </head>
     <body>
     <!--The structure that holds the info is: $profile_user_info-->
+
+    <img src="<?= $profile_user_info['profile_image'] ?>" alt="Profile Picture" class="profile_pic">
     This is the profile of <?=$profile_user_info['first_name']?> <?=$profile_user_info['last_name']?>
 
 
@@ -80,10 +82,11 @@
             <?php
                 $start_indicator=0;
                 $friends_arr = $current_user->getFriends();
+                $friends_number = sizeof($friends_arr);
                 if($friends_arr[0] && $current_user_info['id']==$profile_user_info['id'])
                     foreach($friends_arr as $friend_id) {
                         if($start_indicator==0){
-                            echo "<h3>Friends</h3>";
+                            echo "<h3>Friends ({$friends_number})</h3>";
                         }
                         $start_indicator++;
                         $friend = new User($friend_id);
