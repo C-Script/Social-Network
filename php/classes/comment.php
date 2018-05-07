@@ -66,8 +66,9 @@ class Comment {
 	}
 	public function add($comment_text)//add new post to the table posts
 	{
-		$date_added = date("Y-m-d H:i:s");
-		$query="INSERT INTO comments (owner, post_id , comment, date_added) VALUES ('$this->owner_id',$this->post_id, '$comment_text', '$date_added')";
+        $date_added = date("Y-m-d H:i:s");
+        $comment_text_suit = mysql_real_escape_string($comment_text);
+		$query="INSERT INTO comments (owner, post_id , comment, date_added) VALUES ('$this->owner_id',$this->post_id, '$comment_text_suit', '$date_added')";
 		$query_run=mysql_query($query);
 		if($query_run)
 		{

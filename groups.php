@@ -30,17 +30,21 @@
             .group_name {
                 margin-bottom:-15px
             }
-            .create_group_form {
+            .group_list {
                 width:20%;
                 float:left;
                 margin-top: 50px;
-                margin-left: 50px
+                margin-left: 100px;
+                text-align:center
 
             }
-            .group_list {
+            .create_group_form {
                 width: 40%;
                 float:right;
                 margin-top:50px
+            }
+            #group_desc_input{
+                margin-left: -35px
             }
         </style>
     </head>
@@ -50,9 +54,9 @@
                 ?>
 
                     <form action="groups.php" method="POST" class="create_group_form">
-                        Create a group:<br><br>
-                        Name: <input type="text" name="group_name"><br>
-                        Description: <input type="text" name="group_desc"><br>
+                        <h2>Create a group:</h2><br><br>
+                        Name: <input type="text" name="group_name"><br><br>
+                        <span id="group_desc_input">Description: <input type="text" name="group_desc"></span><br><br>
                         <input type="submit" value="Create" name="group_create"><br>
                         <?= $notification ?>
                     </form>
@@ -64,15 +68,32 @@
         <div class="group_list">
             <h2>Groups List</h2>
             <?php
+
                 $query2=mysql_query("SELECT * FROM groups");
                 $start_indicator=0;
                 while($group = mysql_fetch_array($query2)){
+                    
+                    if(isset($_POST['delete_group' . $group['group_id']])){
+                        $group_id=$group['group_id'];
+                        $delete_group_query = mysql_query("DELETE from groups WHERE group_id='$group_id'");
+                        header("Refresh:0");
+                    }
+
                     $start_indicator++;
                     ?>
                         <a href="groups/<?= $group['group_name'] ?>">
                             <h3 class="group_name"><?=$group['name']?></h3>
                             <p><?= $group['description'] ?></p>
                         </a>
+                    <?php
+                         if($_SESSION['email']=="admin@gmail.com"){
+                             ?>
+                        <form method="POST">
+                            <input type="submit" name="delete_group<?= $group['group_id'] ?>" value="Delete Group">
+                        </form>
+                        <?php
+                         }
+                         ?>
                         <br>
                     <?php
                 }

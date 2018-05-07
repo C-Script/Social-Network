@@ -60,7 +60,8 @@ class Post {
         if(!$group_id){
             $group_id='-1';
         }
-		$query="INSERT INTO posts (owner, post, date_added, group_id) VALUES ('$this->owner_id', '$post_text', '$date_added', '$group_id')";
+        $post_text_suits=mysql_real_escape_string($post_text);
+		$query="INSERT INTO posts (owner, post, date_added, group_id) VALUES ('$this->owner_id', '$post_text_suits', '$date_added', '$group_id')";
 		$query_run=mysql_query($query);
 		//Increment the number of posts for the owner
 		$owner_of_post=new User($this->owner_id);

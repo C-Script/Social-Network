@@ -25,17 +25,17 @@
     if($_SESSION['email']=="admin@gmail.com") {
         ?>
             <a href="/social_network/index.php"><span class="header_logo">Change Makers</span></a>
-            <button class="people_button"><a href="/social_network/people.php">View / Delete Users</a></button>
-            <button class="people_button"><a href="/social_network/index.php">View / Delete Posts</a></button>    
-            <button class="people_button"><a href="/social_network/groups.php">View / Create Groups</a></button>                                
+            <a href="/social_network/people.php"><button class="people_button">View / Delete Users</button></a>
+            <a href="/social_network/index.php"><button class="people_button">View / Delete Posts</button></a>
+            <a href="/social_network/groups.php"><button class="people_button">View / Create / Delete Groups</button></a>                    
         <?php
     } else {
         ?>
             <a href="/social_network/index.php"><span class="header_logo">Change Makers</span></a>
             <span class="header_buttons"><a href=<?=$current_user_info['profile_name']?>>My Profile</a></span>
-            <button class="friend_req_button"><a href="/social_network/requests.php">Show my friend requests</a></button>
-            <button class="people_button"><a href="/social_network/people.php">Check other Change Makers</a></button>
-            <button class="people_button"><a href="/social_network/groups.php">Groups</a></button>            
+            <a href="/social_network/requests.php"><button class="friend_req_button">Show my friend requests</button></a>
+            <a href="/social_network/people.php"><button class="people_button">Check other Change Makers</button></a>
+            <a href="/social_network/groups.php"><button class="people_button">Groups</button></a>   
         <?php
     }
         ?>
