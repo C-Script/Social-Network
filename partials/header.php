@@ -17,7 +17,7 @@
     //$current_user_info['first_name'], $current_user_info['last_name'], $current_user_info['id'], $current_user_info['age'], $current_user_info['email']... etc (database column names)
 ?>
 
-<link rel="stylesheet" type="text/css" href="styles/header.css">
+<link rel="stylesheet" type="text/css" href="/social_network/styles/header.css">
 
 
 <div class="header">
@@ -26,21 +26,21 @@
     if($_SESSION['email']=="admin@gmail.com") {
         ?>
             <a href="index.php"><span class="header_logo">Change Makers</span></a>
-            <button class="people_button"><a href="people.php">View / Delete Users</a></button>
-            <button class="people_button"><a href="index.php">View / Delete Posts</a></button>            
+            <button class="people_button"><a href="/social_network/people.php">View / Delete Users</a></button>
+            <button class="people_button"><a href="/social_network/index.php">View / Delete Posts</a></button>    
+            <button class="people_button"><a href="/social_network/groups.php">Groups</a></button>                                
         <?php
     } else {
         ?>
             <a href="index.php"><span class="header_logo">Change Makers</span></a>
             <span class="header_buttons"><a href=<?=$current_user_info['profile_name']?>>My Profile</a></span>
-            <button class="friend_req_button"><a href="requests.php">Show my friend requests</a></button>
-            <button class="people_button"><a href="people.php">Check other Change Makers</a></button>
+            <button class="friend_req_button"><a href="/social_network/requests.php">Show my friend requests</a></button>
+            <button class="people_button"><a href="/social_network/people.php">Check other Change Makers</a></button>
+            <button class="people_button"><a href="/social_network/groups.php">Groups</a></button>            
         <?php
     }
         ?>
-            
-        <button><a href="suggestedFriends.php">Go to graph</a></button>
-    
+                
     
     <!--form to log out-->
     <form action="index.php" method="POST">
