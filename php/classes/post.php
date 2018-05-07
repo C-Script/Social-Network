@@ -54,10 +54,13 @@ class Post {
 			return 0;
 		}
 	}
-	public function add($post_text)//add new post to the table posts
+	public function add($post_text, $group_id)//add new post to the table posts
 	{
-		$date_added = date("Y-m-d H:i:s");
-		$query="INSERT INTO posts (owner, post, date_added) VALUES ('$this->owner_id', '$post_text', '$date_added')";
+        $date_added = date("Y-m-d H:i:s");
+        if(!$group_id){
+            $group_id='-1';
+        }
+		$query="INSERT INTO posts (owner, post, date_added, group_id) VALUES ('$this->owner_id', '$post_text', '$date_added', '$group_id')";
 		$query_run=mysql_query($query);
 		//Increment the number of posts for the owner
 		$owner_of_post=new User($this->owner_id);
@@ -349,6 +352,142 @@ class Post {
         else {
             echo $str;
         }
+    }
+    
+
+    public function loadGroupPosts($passed_group_id){
+        require 'php/classes/Comment.php';
+
+        $query_g = "SELECT * FROM groups where group_id='$passed_group_id'";
+        $group=mysql_fetch_assoc(mysql_query($query_g));
+        $group_name=$group['name'];
+        $group_group_name=$group['group_name'];
+
+		$str = ""; //String to return
+        $data=mysql_query("SELECT * FROM posts ORDER BY post_id DESC");
+		while($row = mysql_fetch_assoc($data)){
+            $id=$row['post_id'];
+            $body=$row['post'];
+            $added_by=$row['owner'];
+            $date_time=$row['date_added'];
+            $post_group_id=$row['group_id'];      
+           
+            if(isset($_POST["delete{$id}"]))
+               {
+                $query="DELETE FROM posts WHERE post_id='$id'";
+                $query_run=mysql_query($query);
+                header("Refresh:0");
+               }
+            $user_logged_obj = new User($this->owner_id);
+
+            if($post_group_id==$passed_group_id){
+            	$postComments_obj=new Comment($added_by,$id);
+            	$comments=$postComments_obj->loadPostsComments();//returns an html string conains all comments of that post
+                $user_details_query = mysql_query("SELECT first_name, last_name, profile_image, profile_name FROM users where id='$added_by'");
+                $user_row=mysql_fetch_assoc($user_details_query);
+                $first_name=$user_row['first_name'];
+                $last_name=$user_row['last_name'];
+                $profile_pic=$user_row['profile_image'];
+                $profile_name=$user_row['profile_name'];
+                //Timeframe
+                $start_date = new DateTime($date_time); //Time of post
+                $end_date = new DateTime("now"); //Current time
+                $interval = $start_date->diff($end_date); //Difference bet dates
+                if($interval->y>=1){
+                    if($interval == 1)
+                        $time_message = $interval->y . " year ago"; // 1 year ago
+                    else
+                        $time_message = $interval->y . " years ago"; // 1+ year ago                    
+                }
+                else if($interval->m>=1){
+                    if($interval->d == 0){
+                        $days = " ago";
+                    }
+                    else if($interval->d==1){
+                        $days = $interval->d . " day ago";
+                    }
+                    else{
+                        $days = $interval->d . " days ago";
+                    }
+                    if($interval-> m ==1){
+                        $time_message = $interval->m . " month". $days;
+                    }
+                    else {
+                        $time_message = $interval->m . " months". $days;
+                    }
+                }
+                else if($interval->d>=1){
+                    if($interval->d==1){
+                        $time_message = "Yesterday";
+                    }
+                    else{
+                        $time_message = $interval->d . " days ago";
+                    }
+                }
+                else if($interval->h>=1){
+                    if($interval->h==1){
+                        $time_message = $interval->h . " hour ago";
+                    }
+                    else{
+                        $time_message = $interval->d . " hours ago";
+                    }
+                }
+                else if($interval->i>=1){
+                    if($interval->i==1){
+                        $time_message = $interval->i . " minutes ago";
+                    }
+                    else{
+                        $time_message = $interval->i . " minutes ago";
+                    }
+                }
+                else {
+                    if($interval->h<30){
+                        $time_message = "Just now";
+                    }
+                    else{
+                        $time_message = $interval->d . " seconds ago";
+                    }
+                }
+                if($_SESSION['id']!="admin")
+                    $form_str="<form method='POST'>
+                    <input type='text' placeholder='Add Comment' name='comment_value'>
+                    <input type='submit' value='Comment' name='comment'>  
+                    <input type='hidden' name='post_id' value='$id'>
+                    </form>";
+                else
+                    $form_str="<form method='POST'>
+                    <input class='delete_post_button' type='submit' value='Delete Post' name='delete{$id}'>                      
+                    <input type='hidden' name='post_id' value='$id'>
+                    </form>";    
+                  
+            
+ 						$str .= "<div class='status_post'>
+                                <div class='post_profile_pic'>
+                                    <a href='/social_network/$profile_name'><img src='$profile_pic' width='50'></a>
+                                </div>
+                                <div class='posted_by' style='color:#ACACAC;'>
+                                    <a href='/social_network/$profile_name'>$first_name $last_name</a> > <a href='$group_group_name'>$group_name</a> &nbsp;&nbsp;&nbsp;&nbsp; $time_message
+                                </div>
+                                <div id='post_body'>
+                                    $body
+                                    <br>
+                                </div>
+                                ".$form_str."
+                                <h4>Comments:</h4>
+                                ".$comments."
+                        </div>
+                        
+                ";
+            }
+        }
+        if ($str==""){
+            echo "<h3>There are no posts in this group.</h3>";
+        }
+        else {
+            echo $str;
+        }
 	}
+
+
 }
 ?>

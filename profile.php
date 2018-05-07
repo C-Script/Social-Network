@@ -5,7 +5,7 @@
 ?>
 <html>
     <head>
-        <title>Profile</title>
+        <title><?=$profile_user_info['first_name']?> <?=$profile_user_info['last_name']?></title>
         <link rel="stylesheet" type="text/css" href="styles/profile.css">
     </head>
     <body>
@@ -81,9 +81,9 @@
             
             <?php
                 $start_indicator=0;
-                $friends_arr = $current_user->getFriends();
+                $friends_arr = $profile_user->getFriends();
                 $friends_number = sizeof($friends_arr);
-                if($friends_arr[0] && $current_user_info['id']==$profile_user_info['id'])
+                if($friends_arr[0])
                     foreach($friends_arr as $friend_id) {
                         if($start_indicator==0){
                             echo "<h3>Friends ({$friends_number})</h3>";
@@ -104,7 +104,7 @@
             ?>
             <?php
                 if($start_indicator==0 && $current_user_info['id']==$profile_user_info['id']){
-                    echo "<h3>You have no friends yet!</h3>";
+                    echo "<h3>No friends yet!</h3>";
                 }
             ?>
     </div>

@@ -48,9 +48,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `password`, `age`, `num_posts`, `num_likes`, `profile_name`, `education`, `profile_image`, `friend_array`) VALUES
-(38, 'Abdo', 'Moha', '1@1.com', '111', 111, 2, NULL, 'abdo38', NULL, 'assets/images/profile_pics/defaults/5.png', ',39,'),
-(39, 'Ahmed', 'Shawky', '2@2.com', '111', 111, 3, NULL, 'ahmed39', NULL, 'assets/images/profile_pics/defaults/7.png', ',38,'),
-(40, 'Gehad', 'Gresha', '3@3.com', '111', 111, 2, NULL, 'gehad40', NULL, 'assets/images/profile_pics/defaults/5.png', ',');
+(38, 'Abdo', 'Moha', '1@1.com', '111', 111, 2, NULL, 'abdo38', NULL, '/social_network/assets/images/profile_pics/defaults/5.png', ',39,'),
+(39, 'Ahmed', 'Shawky', '2@2.com', '111', 111, 3, NULL, 'ahmed39', NULL, '/social_network/assets/images/profile_pics/defaults/7.png', ',38,'),
+(40, 'Gehad', 'Gresha', '3@3.com', '111', 111, 2, NULL, 'gehad40', NULL, '/social_network/assets/images/profile_pics/defaults/5.png', ',');
 
 --
 -- Indexes for dumped tables

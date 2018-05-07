@@ -2,7 +2,6 @@
 <?php
     
     require 'php/classes/User.php';
-    
 
     //let's take user info from the database and put them in the $current_user_info variable
     //so this information will be available to any page that has the 'header' part
@@ -25,14 +24,14 @@
     <?php
     if($_SESSION['email']=="admin@gmail.com") {
         ?>
-            <a href="index.php"><span class="header_logo">Change Makers</span></a>
+            <a href="/social_network/index.php"><span class="header_logo">Change Makers</span></a>
             <button class="people_button"><a href="/social_network/people.php">View / Delete Users</a></button>
             <button class="people_button"><a href="/social_network/index.php">View / Delete Posts</a></button>    
-            <button class="people_button"><a href="/social_network/groups.php">Groups</a></button>                                
+            <button class="people_button"><a href="/social_network/groups.php">View / Create Groups</a></button>                                
         <?php
     } else {
         ?>
-            <a href="index.php"><span class="header_logo">Change Makers</span></a>
+            <a href="/social_network/index.php"><span class="header_logo">Change Makers</span></a>
             <span class="header_buttons"><a href=<?=$current_user_info['profile_name']?>>My Profile</a></span>
             <button class="friend_req_button"><a href="/social_network/requests.php">Show my friend requests</a></button>
             <button class="people_button"><a href="/social_network/people.php">Check other Change Makers</a></button>
@@ -43,7 +42,7 @@
                 
     
     <!--form to log out-->
-    <form action="index.php" method="POST">
+    <form action="/social_network/index.php" method="POST">
         <input type="submit" value="Log out" name="logout">            
     </form>
     <br><br><br><br><br><br>

@@ -95,7 +95,7 @@ class User {
 
 			//Setting profile image
 			$rand=rand(1,16);
-			$profile_image="assets/images/profile_pics/defaults/{$rand}.png";
+			$profile_image="/social_network/assets/images/profile_pics/defaults/{$rand}.png";
 
 			$query="UPDATE users SET profile_image = '$profile_image' WHERE id ='$this->user_id'";
 			mysql_query($query);
