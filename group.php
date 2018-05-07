@@ -29,7 +29,7 @@
         
 
         <?php 
-        if($_SESSION['email']!="admin@gmail.com")
+        if($_SESSION['email']!="admin@gmail.com" && isMember($user_id, $current_group_id))
         echo '<div class="post_status_area">
             <form method="POST">
                 <input type="text" placeholder="Post into this group" name="post_value">

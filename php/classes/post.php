@@ -116,7 +116,18 @@ class Post {
             $id=$row['post_id'];
             $body=$row['post'];
             $added_by=$row['owner'];
-            $date_time=$row['date_added'];          
+            $date_time=$row['date_added'];
+            $group_id=$row['group_id'];
+            if($group_id==-1){
+                $group_name="";
+                $group_group_name="";
+            }else {
+                $query="SELECT * from groups where group_id='$group_id'";
+                $query_run=mysql_fetch_assoc(mysql_query($query));
+                $group_name="> " . $query_run['name'];
+                $group_group_name=$query_run['group_name'];
+
+            }
             if(isset($_POST["delete{$id}"]))
                {
                 $query="DELETE FROM posts WHERE post_id='$id'";
@@ -208,7 +219,7 @@ class Post {
                                     <a href='$profile_name'><img src='$profile_pic' width='50'></a>
                                 </div>
                                 <div class='posted_by' style='color:#ACACAC;'>
-                                    <a href='$profile_name'>$first_name $last_name</a>&nbsp;&nbsp;&nbsp;&nbsp; $time_message
+                                    <a href='$profile_name'>$first_name $last_name</a> <a href='groups/$group_group_name'>$group_name</a></a>&nbsp;&nbsp;&nbsp;&nbsp; $time_message
                                 </div>
                                 <div id='post_body'>
                                     $body
